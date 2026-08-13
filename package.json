@@ -1,7 +1,7 @@
 {
   "name": "resumeforge",
   "version": "1.0.0",
-  "description": "Resume builder with paid PDF download (Stripe Checkout)",
+  "description": "Free online resume & CV builder - create a professional resume with photo, experience, education and skills, then download a clean A4 PDF. English and French.",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
