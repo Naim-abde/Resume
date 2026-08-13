@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Free Resume & CV Builder — Resume Forge | Create & Download PDF</title>
+  <meta name="description" content="Build a professional resume or CV online for free with Resume Forge. Add a photo, multiple jobs, education, skills, projects and languages, then download a clean A4 PDF. English or French." />
+  <meta name="keywords" content="resume builder, cv maker, free resume, create resume, cv online, resume template, download resume pdf, cv builder" />
+  <meta name="author" content="Resume Forge" />
+  <meta name="robots" content="index, follow" />
+  <meta name="theme-color" content="#b5512e" />
+  <link rel="canonical" href="https://resume-forge.surge.sh/builder.html" />
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Resume Forge" />
+  <meta property="og:title" content="Free Resume & CV Builder — Resume Forge" />
+  <meta property="og:description" content="Build a professional resume or CV online for free. Add a photo, multiple jobs, education and skills, then download a clean A4 PDF." />
+  <meta property="og:url" content="https://resume-forge.surge.sh/builder.html" />
+  <meta property="og:image" content="https://resume-forge.surge.sh/og-image.png" />
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Free Resume & CV Builder — Resume Forge" />
+  <meta name="twitter:description" content="Build a professional resume or CV online for free and download it as a clean A4 PDF." />
+  <meta name="twitter:image" content="https://resume-forge.surge.sh/og-image.png" />
+
+  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/style.css" />
+
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": "Free Resume & CV Builder",
+    "url": "https://resume-forge.surge.sh/builder.html",
+    "isPartOf": {
+      "@type": "WebApplication",
+      "name": "Resume Forge",
+      "url": "https://resume-forge.surge.sh/"
+    },
+    "description": "Free online resume and CV builder. Add a photo, multiple jobs, education, skills, projects and languages, then download a clean A4 PDF. English and French."
+  }
+  </script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+<body class="builder-body">
+
+  <nav class="navbar builder-nav">
+    <div class="container nav-inner">
+      <a href="index.html" class="logo">Resume<span>Forge</span></a>
+      <div class="nav-right">
+        <a href="index.html" class="nav-back">&#8592; Back to Home</a>
+        <button id="downloadBtn" class="btn btn-primary btn-small">Download PDF</button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container builder-wrap">
+
+    <!-- FORM -->
+    <section class="builder-form">
+
+      <div class="form-intro">
+        <h1>Build Your Resume</h1>
+        <p class="subtitle">Fill in the fields. Your resume updates live on the right.</p>
+      </div>
+
+      <div class="lang-switch">
+        <span class="lang-label">Resume language:</span>
+        <div class="segmented" id="langSegmented">
+          <button type="button" class="seg-btn active" data-lang="en">English</button>
+          <button type="button" class="seg-btn" data-lang="fr">Fran&ccedil;ais</button>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">&#10022;</span>
+          <h2>Accent color</h2>
+        </div>
+        <div class="field">
+          <label for="accentColor">Choose the accent color for your resume</label>
+          <div class="color-picker">
+            <div class="swatches" id="swatches">
+              <button type="button" class="swatch" data-color="#b5512e" style="background: #b5512e" title="Terracotta"></button>
+              <button type="button" class="swatch" data-color="#2563eb" style="background: #2563eb" title="Blue"></button>
+              <button type="button" class="swatch" data-color="#15803d" style="background: #15803d" title="Green"></button>
+              <button type="button" class="swatch" data-color="#9333ea" style="background: #9333ea" title="Purple"></button>
+              <button type="button" class="swatch" data-color="#b91c1c" style="background: #b91c1c" title="Red"></button>
+              <button type="button" class="swatch" data-color="#0f172a" style="background: #0f172a" title="Ink"></button>
+              <button type="button" class="swatch" data-color="#ca8a04" style="background: #ca8a04" title="Gold"></button>
+            </div>
+            <input type="color" id="accentColor" value="#b5512e" />
+          </div>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">1</span>
+          <h2>Personal Information</h2>
+        </div>
+
+        <div class="field">
+          <label for="photo">Profile Photo</label>
+          <div class="file-input">
+            <input type="file" id="photo" accept="image/*" />
+            <span class="file-btn">Choose a photo</span>
+          </div>
+        </div>
+        <div class="field">
+          <label for="fullName">Full Name</label>
+          <input type="text" id="fullName" placeholder="John Doe" />
+        </div>
+        <div class="field">
+          <label for="jobTitle">Job Title</label>
+          <input type="text" id="jobTitle" placeholder="Web Developer" />
+        </div>
+        <div class="field-row">
+          <div class="field">
+            <label for="email">Email</label>
+            <input type="email" id="email" placeholder="john@email.com" />
+          </div>
+          <div class="field">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" placeholder="+1 234 567 890" />
+          </div>
+        </div>
+        <div class="field">
+          <label for="address">Address</label>
+          <input type="text" id="address" placeholder="City, Country" />
+        </div>
+        <div class="field">
+          <label for="summary">Professional Summary</label>
+          <textarea id="summary" rows="3" placeholder="A short paragraph about yourself..."></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">2</span>
+          <h2>Work Experience</h2>
+          <button type="button" id="addJobBtn" class="btn btn-outline btn-small add-btn">+ Add job</button>
+        </div>
+        <p class="section-hint">Leave this section empty if you have no work experience yet.</p>
+        <div id="jobsContainer"></div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">3</span>
+          <h2>Education</h2>
+          <button type="button" id="addEduBtn" class="btn btn-outline btn-small add-btn">+ Add education</button>
+        </div>
+        <div id="eduContainer"></div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">4</span>
+          <h2>Skills</h2>
+        </div>
+        <div class="field">
+          <label for="skills">Skills (separated by commas)</label>
+          <input type="text" id="skills" placeholder="HTML, CSS, JavaScript, React" />
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">5</span>
+          <h2>Projects</h2>
+        </div>
+        <div class="field">
+          <label for="proj1Title">Project Name</label>
+          <input type="text" id="proj1Title" placeholder="E-commerce Website" />
+        </div>
+        <div class="field">
+          <label for="proj1Link">Project Link / URL</label>
+          <input type="text" id="proj1Link" placeholder="github.com/yourname/project" />
+        </div>
+        <div class="field">
+          <label for="proj1Desc">Description</label>
+          <textarea id="proj1Desc" rows="3" placeholder="What did you build and what was your role?"></textarea>
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">6</span>
+          <h2>Languages</h2>
+        </div>
+        <div class="field">
+          <label for="languages">Languages (separated by commas)</label>
+          <input type="text" id="languages" placeholder="English (Native), French (Fluent), Arabic (Native)" />
+        </div>
+      </div>
+
+      <div class="form-section">
+        <div class="form-section-head">
+          <span class="form-num">7</span>
+          <h2>Certifications</h2>
+        </div>
+        <div class="field">
+          <label for="cert1Name">Certificate Name</label>
+          <input type="text" id="cert1Name" placeholder="AWS Certified Developer" />
+        </div>
+        <div class="field">
+          <label for="cert1Year">Year</label>
+          <input type="text" id="cert1Year" placeholder="2024" />
+        </div>
+      </div>
+
+    </section>
+
+    <!-- LIVE PREVIEW -->
+    <section class="builder-preview">
+      <div class="preview-toolbar">
+        <span class="preview-label"><span class="pulse-dot"></span> Live Preview</span>
+      </div>
+
+      <div id="resumePreview" class="resume-page">
+        <div class="resume-accent"></div>
+        <div class="resume-pad">
+          <header class="resume-header">
+            <div class="resume-heading">
+              <h1 id="pvName">Your Name</h1>
+              <p class="pv-jobtitle" id="pvJobTitle">Job Title</p>
+              <div class="resume-contact">
+                <span id="pvEmail">email@example.com</span>
+                <span id="pvPhone">phone number</span>
+                <span id="pvAddress">address</span>
+              </div>
+            </div>
+            <img id="pvPhoto" class="resume-photo hidden" alt="Profile photo" />
+          </header>
+
+          <div class="resume-body">
+            <section><h2 class="resume-section-title" id="pvSecSummary"><span class="sec-marker"></span>Professional Summary</h2>
+              <p id="pvSummary">Your summary goes here...</p>
+            </section>
+
+            <section id="pvJobsSection">
+              <h2 class="resume-section-title" id="pvSecJobs"><span class="sec-marker"></span>Work Experience</h2>
+              <div id="pvJobs"></div>
+            </section>
+
+            <section id="pvEduSection">
+              <h2 class="resume-section-title" id="pvSecEdu"><span class="sec-marker"></span>Education</h2>
+              <div id="pvEdu"></div>
+            </section>
+
+            <section>
+              <h2 class="resume-section-title" id="pvSecSkills"><span class="sec-marker"></span>Skills</h2>
+              <div id="pvSkills" class="skills-tags">
+                <span>Skill</span>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="resume-section-title" id="pvSecProjects"><span class="sec-marker"></span>Projects</h2>
+              <div class="resume-item">
+                <h3 id="pvProjTitle">Project Name</h3>
+                <p class="resume-company" id="pvProjLink">project link</p>
+                <p class="resume-desc" id="pvProjDesc">Description...</p>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="resume-section-title" id="pvSecLanguages"><span class="sec-marker"></span>Languages</h2>
+              <div id="pvLanguages" class="skills-tags">
+                <span>Language</span>
+              </div>
+            </section>
+
+            <section>
+              <h2 class="resume-section-title" id="pvSecCerts"><span class="sec-marker"></span>Certifications</h2>
+              <div class="resume-item">
+                <h3 id="pvCertName">Certificate Name</h3>
+                <p class="resume-desc" id="pvCertYear">Year</p>
+              </div>
+            </section>
+          </div>
+        </div>
+      </div>
+
+      <div id="downloadStatus" class="status hidden"></div>
+      <div class="preview-note">Your resume is generated as a clean, A4-sized PDF with your photo.</div>
+    </section>
+
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
+

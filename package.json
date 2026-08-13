@@ -1,0 +1,12 @@
+{
+  "name": "resumeforge",
+  "version": "1.0.0",
+  "description": "Resume builder with paid PDF download (Stripe Checkout)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
